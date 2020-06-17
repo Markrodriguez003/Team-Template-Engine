@@ -12,15 +12,24 @@ const render = require("./lib/htmlRenderer");
 const { Console } = require("console");
 const teamMembers = [];
 
+function htmlWriter(htmlF){
+    fs.writeFile('./output/team.html', htmlF, function (err) {
+        if (err) throw err;
+      
+      });
+}
+
 function generateTeam() {
     console.log("Generating Team . . . ");
     console.log("TEAM: ");
     teamMembers.forEach(member => {
         console.log(member);
+        
     })
     
-    const x = render(teamMembers);
-    console.log(x);
+    const renderedHTML = render(teamMembers);
+    console.log(renderedHTML);
+    htmlWriter(renderedHTML);
 }
 
 function choiceLoop() {
@@ -190,7 +199,6 @@ function createManager() {
 }
 
 teamBuilder();
-
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
